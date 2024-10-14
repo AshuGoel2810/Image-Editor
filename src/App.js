@@ -1,23 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+// src/App.js
+import React, { useState } from 'react';
+import ImageSearch from './components/ImageSearch';
+import ImageEditor from './components/ImageEditor';
+import '../src/App.css';
 
 function App() {
+  const [selectedImage, setSelectedImage] = useState(null);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      
+      {!selectedImage ? (
+        <ImageSearch onSelectImage={setSelectedImage} />
+      ) : (
+        <ImageEditor imageUrl={selectedImage} />
+      )}
     </div>
   );
 }
